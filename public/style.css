@@ -1,138 +1,239 @@
-/* 🌈 Reset & Base */
+/* 🌈 RESET & BASE */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
   background: linear-gradient(135deg, #74abe2, #5563de);
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow-x: hidden;
-}
-
-/* 🧊 Auth Container */
-.container {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  padding: 40px 35px;
-  width: 100%;
-  max-width: 450px;
-  text-align: center;
   color: #fff;
-  animation: fadeIn 0.8s ease-out;
-  transition: transform 0.4s ease;
+  text-align: center;
+  padding: 20px;
 }
 
-.container:hover {
-  transform: scale(1.02);
-}
-
-/* ✨ Headings */
-h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  animation: slideDown 0.8s ease-out;
-}
-
-p {
-  font-size: 0.95rem;
-  opacity: 0.9;
+/* 🧭 HEADINGS */
+h1, h2 {
   margin-bottom: 25px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
-/* 📝 Input Fields */
-.form-group {
-  margin-bottom: 20px;
-  position: relative;
+/* 🧾 FORM WRAPPER (Login / Signup) */
+.auth-box {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 40px 45px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 }
 
+/* 🧾 INPUTS */
 input {
-  width: 25%;
-  padding: 12px 15px;
-  border-radius: 8px;
+  width: 20%;
+  padding: 14px 18px;
+  border-radius: 10px;
   border: none;
+  margin-top: 5px;
   outline: none;
-  font-size: 1rem;
+  font-size: 16px;
+  background: #ffffffde;
   color: #333;
-  background: rgba(255, 255, 255, 0.9);
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
 input:focus {
-  box-shadow: 0 0 10px #00e5ff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  transform: scale(1.02);
 }
 
-/* 🔘 Buttons */
+/* 🔘 BUTTONS */
 button {
-  width: 20%;
-  padding: 12px;
+  padding: 12px 24px;
+  background: #3b3be0;
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #00bcd4, #3f51b5);
+  border-radius: 10px;
   color: white;
-  font-size: 1rem;
   cursor: pointer;
+  font-weight: 600;
+  margin-top: 5px;
+  font-size: 16px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.6);
+  background: #2929c4;
+  transform: scale(1.05);
 }
 
-/* 🌟 Link between Login and Signup */
-.toggle-link {
-  margin-top: 20px;
-  font-size: 0.9rem;
+/* 📋 LINKS */
+a {
   color: #fff;
-}
-
-.toggle-link a {
-  color: #00e5ff;
-  text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s;
-}
-
-.toggle-link a:hover {
-  color: #03a9f4;
   text-decoration: underline;
 }
 
-/* ✅ Message/Errors */
-.message {
-  font-size: 0.85rem;
-  color: #ffeb3b;
+a:hover {
+  color: #ffeb5c;
+}
+
+/* ✅ TODO PAGE */
+.todo-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.todo-input input {
+  width: 250px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+/* 🧾 TASK LIST */
+ul {
+  list-style: none;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 450px;
+  max-height: 350px;       /* 👈 Control overflow height */
+  overflow-y: auto;        /* 👈 Scroll if too many tasks */
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff80 transparent;
+  padding: 0;
+}
+
+/* Scrollbar for Chrome */
+ul::-webkit-scrollbar {
+  width: 8px;
+}
+ul::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.15);
+  margin: 10px 0;
+  padding: 14px 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.3s;
+}
+
+li:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+li.completed span {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* ✏️ BUTTONS INSIDE TODO ITEM */
+li button {
+  margin-left: 5px;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  background: #444;
+}
+
+li button:hover {
+  background: #222;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+
+  .auth-box {
+    width: 95%;
+    padding: 30px;
+  }
+
+  input, button {
+    width: 100%;
+  }
+
+  .todo-input {
+    flex-direction: column;
+  }
+
+  ul {
+    max-height: 300px;
+  }
+}
+
+/* Task list container */
+ul {
+  list-style: none;
+  width: 90%;
+  max-width: 450px;
+  max-height: 350px;
+  overflow-y: auto; /* vertical scroll */
+  overflow-x: hidden; /* horizontal scroll removed */
+  padding: 0 5px;
+  margin-top: 15px;
+  word-break: break-word;      /* break long words */
+  white-space: normal;          /* wrap text normally */
+  line-height: 1.5;
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff60 transparent;
+}
+
+/* Individual task */
+li {
+  background: rgba(255,255,255,0.15);
+  padding: 14px 16px;
   margin-bottom: 10px;
-  animation: fadeIn 0.5s ease-in;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;               /* wrap elements inside li */
+  gap: 10px;
+  word-break: break-word;        /* break long words */
+  overflow-wrap: anywhere;       /* prevent horizontal scroll */
 }
 
-/* 🌟 Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+/* Task text */
+li span {
+  flex: 1;
+  white-space: normal;           /* wrap text */
+  word-break: break-word;
+  overflow-wrap: anywhere;       /* break long text / emojis */
 }
 
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* 📱 Responsive */
-@media (max-width: 480px) {
-  .container {
-    padding: 30px 25px;
+/* Optional: small responsive fix */
+@media (max-width: 600px) {
+  ul {
+    max-height: 300px;
   }
-  h2 {
-    font-size: 1.6rem;
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
+
