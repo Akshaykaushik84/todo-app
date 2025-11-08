@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>To-Do List for <span id="username"></span></h2>
+  <div class="todo-input">
+    <input id="task-input" placeholder="New Task">
+    <button onclick="addTask()">Add</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+  <ul id="task-list"></ul>
+
+  <script>
+    const user = localStorage.getItem('user');
+    if (!user) window.location.href = 'login.html';
+    document.getElementById('username').textContent = user;
+
+    function loadTodos() {
+      fetch(`/todos/${user}`).then(res => res.json()).then(data => {
+        const list = document.getElementById('task-list');
+        list.innerHTML = '';
+        data.forEach((task, i) => {
+          const li = document.createElement('li');
+          li.className = task.completed ? 'completed' : '';
+
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = task.completed;
+          checkbox.onchange = () => toggleComplete(i, checkbox.checked);
+
+          const span = document.createElement('span');
+          span.textContent = task.text;
+
+          const editBtn = document.createElement('button');
+          editBtn.textContent = '✏️';
+          editBtn.onclick = () => {
+            const newText = prompt('Edit Task:', task.text);
+            if (newText) updateTask(i, newText);
+          };
+
+          const delBtn = document.createElement('button');
+          delBtn.textContent = '🗑️';
+          delBtn.onclick = () => deleteTask(i);
+
+          li.append(checkbox, span, editBtn, delBtn);
+          list.appendChild(li);
+        });
+      });
+    }
+
+    function addTask() {
+      const task = document.getElementById('task-input').value;
+      if (task) {
+        fetch(`/todos/${user}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: task })
+        }).then(() => {
+          document.getElementById('task-input').value = '';
+          loadTodos();
+        });
+      }
+    }
+
+    function deleteTask(index) {
+      fetch(`/todos/${user}/${index}`, { method: 'DELETE' }).then(loadTodos);
+    }
+
+    function toggleComplete(index, completed) {
+      fetch(`/todos/${user}/${index}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ completed })
+      }).then(loadTodos);
+    }
+
+    function updateTask(index, text) {
+      fetch(`/todos/${user}/${index}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text })
+      }).then(loadTodos);
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      window.location.href = 'login.html';
+    }
+
+    loadTodos();
+  </script>
+</body>
+</html>

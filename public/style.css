@@ -1,0 +1,138 @@
+/* 🌈 Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #74abe2, #5563de);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* 🧊 Auth Container */
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 40px 35px;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  color: #fff;
+  animation: fadeIn 0.8s ease-out;
+  transition: transform 0.4s ease;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+/* ✨ Headings */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: slideDown 0.8s ease-out;
+}
+
+p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+/* 📝 Input Fields */
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+input {
+  width: 25%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #333;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  box-shadow: 0 0 10px #00e5ff;
+}
+
+/* 🔘 Buttons */
+button {
+  width: 20%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00bcd4, #3f51b5);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.6);
+}
+
+/* 🌟 Link between Login and Signup */
+.toggle-link {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.toggle-link a {
+  color: #00e5ff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.toggle-link a:hover {
+  color: #03a9f4;
+  text-decoration: underline;
+}
+
+/* ✅ Message/Errors */
+.message {
+  font-size: 0.85rem;
+  color: #ffeb3b;
+  margin-bottom: 10px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* 🌟 Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 25px;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+}
